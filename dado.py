@@ -3,9 +3,8 @@
 from util import *
 
 
-
 #main
-def Main(argv):
+def Main(argv) -> int:
 	argk = list(argv.keys())
 	def get(*indicators:object) -> list:
 		nonlocal argv,argk
@@ -16,13 +15,20 @@ def Main(argv):
 					other.append(item)
 		return other
 
-	ncs = average((get("-NS","-ns","-Ns","-nS","-ncs","-Ncs","-nCs","-ncS","-nc","-NC","-Nc","-nC")),ParseString=True)*.3
-	p50 = average(get("-p50","-P50","-p5","-P5"),ParseString=True)*.3
-	p100 = average(get("-p100","-P100","-p10","-P10","-p1","-P1"),ParseString=True)*.4
-	print(round(ncs+p50+p100,5))
+	min = 0
+	max = 6
+	
+	try:
+		min = int(get(None)[0])
+	except Exception:pass
+
+	try:
+		max = int(get(None)[1])
+	except Exception:pass
+
+	print(rint(min,max))
+
 	return 0
-
-
 
 
 
@@ -36,5 +42,5 @@ if __name__ == '__main__':
 	if '--debug' in argv.keys():
 		if not ExitCode:printl("%scode successfully exited in " % color["green"])
 		else:printl("%scode exited with error %d in " % (color["red"],ExitCode))
-		print("%d seconds%s" % (round(tm()-start,5),color["nc"]))
+		print("%.3f seconds%s" % (tm()-start,color["nc"]))
 	exit(ExitCode)

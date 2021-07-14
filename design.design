@@ -1,0 +1,36 @@
+{
+
+"n" : [
+	"name",
+	"design"
+],
+
+"e" : [
+	"extension",
+	".design"
+],
+
+
+"t" : [
+	"technique",
+	"json listing"
+],
+
+"l" : [
+	"layout",
+	"json"
+],
+
+"ui" : {
+	"def" : "user interface / user interaction",
+
+	"e.g." : [
+		"debug line",
+		"program displaied info",
+		"keys & actions"
+	]
+}
+
+
+
+}

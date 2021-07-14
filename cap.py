@@ -2,6 +2,8 @@
 #imports
 from util import *
 
+# OUTDATED USE MKF.PY INSTEAD
+
 #main
 def main(argv):
 	argk = list(argv.keys())
