@@ -4,6 +4,7 @@ from util import *
 from ClockLib import n1,n2,n3,n4,n5,n6,n7,n8,n9,n0
 import datetime
 #main
+
 class Program:
 	@property
 	def hour(this):
