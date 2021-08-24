@@ -1,6 +1,6 @@
 #! /usr/bin/python3.9
 #imports
-from util import r,ss,sleep,tm,argv,rint
+from util import r,ss,sleep,tm,argv,rint,pos,ClearLine
 
 #main
 def main(argv):
@@ -13,8 +13,8 @@ def main(argv):
             cells.append(self)
         def next_gen(self,alive):
             self.nxt_alive = alive
-        @property
-        def go_next(self):
+
+        def next(self):
             self.alive = self.nxt_alive
 
         def __repr__(self):
@@ -24,6 +24,7 @@ def main(argv):
                 return '□'
         def __call__(self):
             return self.alive
+
     X,Y = 60,60
     mp = [[x for x in r(X)] for x in r(Y)]
     for x in r(mp):
@@ -52,15 +53,17 @@ def main(argv):
                 j+=eval(f'mp[cell.x{i[0]}][cell.y{i[1]}]()')
             except IndexError:pass
         return j
+
     try:
         ss('clear')
-        from sys import getsizeof as sizeof
         while True:
+            ClearLine(y+3)
+            print(pos(1,1))
 
             #[print(f'{i+1}:\t{str(mp[i])[1:-2]}\t:{i+1}') for i in r(mp)]
             [print("%s:\t%s\b\t:%s" % (i+1,str(mp[i])[1:-2],i+1)) for i in r(mp)]
             if 'sbs' in argv:
-                input()
+                if input() == 'c':ss("clear")
             else:
                 sleep(ms=300)
             for cli in mp:
@@ -76,8 +79,8 @@ def main(argv):
 
             # todo: for x \n for y if neighbors = [x-1,y+1....]
 
-            [cl.go_next for cl in cells]
-            ss('clear')
+            [cl.next() for cl in cells]
+            # ss('clear')
 
 
     except KeyboardInterrupt:pass
